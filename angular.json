@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bne"
+    }
+  },
+  "defaultProject": "bne",
+  "cli": {
+    "analytics": false
+  }
 }
