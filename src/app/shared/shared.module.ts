@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 // angular material
 import { MatTableModule } from '@angular/material/table';
@@ -14,12 +15,14 @@ import { MatSortModule } from '@angular/material/sort';
 
 // components
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ClipboardComponent } from './components/clipboard/clipboard.component';
 
 @NgModule({
-  declarations: [ToolbarComponent],
+  declarations: [ToolbarComponent, ClipboardComponent],
   imports: [
     // angular
     CommonModule,
+    ClipboardModule,
 
     // angular material
     MatTableModule,
@@ -28,13 +31,14 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
-    MatSortModule
+    MatSortModule,
   ],
   exports: [
     // angular
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    ClipboardModule,
 
     // angular material
     MatTableModule,
@@ -46,7 +50,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatSortModule,
 
     // components
-    ToolbarComponent
+    ToolbarComponent,
+    ClipboardComponent,
   ],
 })
 export class SharedModule {}

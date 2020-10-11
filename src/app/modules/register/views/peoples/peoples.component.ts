@@ -1,10 +1,11 @@
 // angular
-import { Component, ViewChild } from '@angular/core';
+import { OnInit, Component, ViewChild } from '@angular/core';
 
 // interface
 import { People } from './../../models/people.interface';
 
 // services
+import { UtilService } from './../../../../core/services/util.service';
 import { PeoplesService } from './../../services/peoples.service';
 
 // angular material
@@ -17,23 +18,23 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./peoples.component.scss'],
 })
 
-export class PeoplesComponent {
+export class PeoplesComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   dataSource: MatTableDataSource<People>;
-  displayedColumns: string[] = [
-    'Id',
-    'Name',
-    'RegisterDate',
-    'City',
-    'State',
-    'IsActive',
-    'Balance',
-  ];
+  isMobile: boolean;
+  displayedColumns: Array<string>;
 
   constructor(
-    private peopleService: PeoplesService
+    private peopleService: PeoplesService,
+    private utilService: UtilService
   ) {
     this.getPeople();
+  }
+
+  ngOnInit(){
+    this.isMobile = this.utilService.detectMobile();
+    // Define as colunas conforme dispositivo
+    this.displayedColumns = (this.isMobile) ? ['Name','Copy'] : ['Id','Name','RegisterDate','City','State','IsActive','Balance','Copy'];
   }
 
   /**
@@ -55,4 +56,5 @@ export class PeoplesComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
 }
