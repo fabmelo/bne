@@ -1,8 +1,14 @@
+import { FakeBackendInterceptor } from './interceptors/fakebackend.interceptor';
 // angular
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserModule } from '@angular/platform-browser';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+// interceptor
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+//import { fakeBackendProvider } from './interceptors/fakebackend.interceptor';
 
 @NgModule({
   imports: [
@@ -12,14 +18,18 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     BrowserModule
   ],
   providers: [
-    // Authorization / JWT
-    //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // authorization / JWT
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
 
-    // Error / JWT
-    //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // error / JWT
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-    // Hash na URL
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    // backend fake
+    { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },
+
+    // hash na URL (refresh view)
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+
   ]
 })
 export class CoreModule { }
