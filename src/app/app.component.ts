@@ -1,5 +1,4 @@
 //angular
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 // interface
@@ -16,12 +15,9 @@ import { AuthService } from './modules/security/services/auth.service';
 export class AppComponent {
   currentUser: User;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private authService: AuthService) {
     this.authService.currentUser.subscribe((x) => (this.currentUser = x)); // obtem o usuário atual caso exista
   }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/auth']);
-  }
+
 }

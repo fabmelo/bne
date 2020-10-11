@@ -19,6 +19,8 @@ export class AuthComponent implements OnInit {
   returnUrl: string;
   loading = false;
   submitted = false;
+  inputUserName: any;
+  inputPassword: any;
 
   constructor(
     private formBuilder: FormBuilder,

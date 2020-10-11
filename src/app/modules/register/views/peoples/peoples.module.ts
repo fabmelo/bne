@@ -6,7 +6,6 @@ import { PeoplesComponent } from './peoples.component';
 
 // modules
 import { SharedModule } from './../../../../shared/shared.module';
-import { LayoutModule } from './../../../../layout/layout.module';
 import { PeoplesRoutingModule } from './peoples-routing.module';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { PeoplesRoutingModule } from './peoples-routing.module';
   ],
   imports: [
     SharedModule,
-    LayoutModule,
     PeoplesRoutingModule
   ]
 })

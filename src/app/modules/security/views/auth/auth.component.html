@@ -1,20 +1,37 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="UserName">Usuário:</label>
-    <input id="UserName" formControlName="UserName">
-    <p style="color: red" *ngIf="f.UserName.dirty && f.UserName.hasError('required')">Obrigatório</p>
-  </div>
-  <div>
-    <label for="Password">Password:</label>
-    <input id="Password" formControlName="Password" type="password">
-    <p style="color: red" *ngIf="f.Password.dirty && f.Password.hasError('required')">Obrigatório</p>
-    <p style="color: red" *ngIf="f.Password.dirty && f.Password.hasError('minlength')">Ao menos 6 digitos</p>
-  </div>
-  <div>
-    <button type="submit">ENTRAR</button>
-  </div>
-</form>
+<mat-card class="mat-elevation-z8">
+  <mat-card-title>
+    <h1>AUTENTICAÇÃO</h1>
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-<h1 *ngIf="loading">CARREGANDO...</h1>
+      <p>
+        <mat-form-field class="my-form-field">
+          <input type="text" matInput placeholder="Usuário" formControlName="UserName" [(ngModel)]="inputUserName">
+          <button mat-button *ngIf="inputUserName" matSuffix mat-icon-button aria-label="Clear" (click)="inputUserName=''">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="f.UserName.dirty && f.UserName.hasError('required')">Obrigatório</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="my-form-field">
+          <input type="password" matInput placeholder="Senha" formControlName="Password" [(ngModel)]="inputPassword">
+          <button mat-button *ngIf="inputPassword" matSuffix mat-icon-button aria-label="Clear" (click)="inputPassword=''">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="f.Password.dirty && f.Password.hasError('required')">Obrigatório</mat-error>
+          <mat-error *ngIf="f.Password.dirty && f.Password.hasError('minlength')">Ao menos 6 digitos</mat-error>
+        </mat-form-field>
+      </p>
+
+      <div class="button">
+        <button [disabled]="!form.valid" type="submit" mat-raised-button color="primary">ENTRAR</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>
 
 
