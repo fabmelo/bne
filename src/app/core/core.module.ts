@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 // interceptor
 import { ErrorInterceptor } from './interceptors/error.interceptor';
@@ -16,7 +18,7 @@ registerLocaleData(localePt);
 
 @NgModule({
   imports: [HttpClientModule],
-  exports: [BrowserModule],
+  exports: [BrowserModule, BrowserAnimationsModule, ScrollingModule],
   providers: [
     // locale
     { provide: LOCALE_ID, useValue: 'pt-BR' },

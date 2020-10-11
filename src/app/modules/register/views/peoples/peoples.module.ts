@@ -14,7 +14,7 @@ import { PeoplesRoutingModule } from './peoples-routing.module';
   ],
   imports: [
     SharedModule,
-    PeoplesRoutingModule
+    PeoplesRoutingModule,
   ]
 })
 export class PeoplesModule { }
