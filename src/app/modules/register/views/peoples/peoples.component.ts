@@ -8,6 +8,7 @@ import { People } from './../../models/people.interface';
 // services
 import { AuthService } from './../../../security/services/auth.service';
 import { PeoplesService } from './../../services/peoples.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'bne-peoples',
@@ -16,7 +17,7 @@ import { PeoplesService } from './../../services/peoples.service';
 })
 export class PeoplesComponent implements OnInit {
 
-  dataSource: Array<People> = [];
+  dataSource: Array<People> | any = [];
   displayedColumns: string[] = ['Id', 'Name', 'RegisterDate', 'City', 'State', 'IsActive', 'Balance'];
 
   constructor(
@@ -29,10 +30,13 @@ export class PeoplesComponent implements OnInit {
     this.getPeople();
   }
 
+  /**
+   * Consome o service e traz todos os dados
+   */
   getPeople(){
     this.peopleService.getAll().subscribe(
       (res: any) => {
-        this.dataSource = res;
+        this.dataSource = new MatTableDataSource(res);
       },
       (error: any) => {
         console.error("ERRO: ", error);
@@ -43,6 +47,11 @@ export class PeoplesComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/auth']);
+  }
+
+  onFilter(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

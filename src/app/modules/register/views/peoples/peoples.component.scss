@@ -1,15 +1,22 @@
-.spacer {
-  flex: 1 1 auto;
-}
-
-table {
-  width: 100%;
-}
-
 .container{
   padding: 20px;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  table {
+    width: 100%;
+
+    .success{
+      color: green !important;
+    }
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
 }
 
-.success{
-  color: green !important;
-}
+

@@ -1,23 +1,26 @@
-import { FakeBackendInterceptor } from './interceptors/fakebackend.interceptor';
 // angular
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // interceptor
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-//import { fakeBackendProvider } from './interceptors/fakebackend.interceptor';
+import { FakeBackendInterceptor } from './interceptors/fakebackend.interceptor';
+
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt);
 
 @NgModule({
-  imports: [
-    HttpClientModule
-  ],
-  exports: [
-    BrowserModule
-  ],
+  imports: [HttpClientModule],
+  exports: [BrowserModule],
   providers: [
+    // locale
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+
     // authorization / JWT
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
 
@@ -25,11 +28,14 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // backend fake
-    { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FakeBackendInterceptor,
+      multi: true,
+    },
 
     // hash na URL (refresh view)
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-
-  ]
+  ],
 })
-export class CoreModule { }
+export class CoreModule {}

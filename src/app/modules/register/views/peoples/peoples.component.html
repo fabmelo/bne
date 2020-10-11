@@ -8,6 +8,12 @@
   </mat-toolbar>
 </div>
 <div class="container">
+
+  <mat-form-field>
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="onFilter($event)" placeholder="Ex. Digite o que deseja filtrar" #input>
+  </mat-form-field>
+
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="Id">
@@ -45,11 +51,12 @@
 
     <ng-container matColumnDef="Balance">
       <th mat-header-cell *matHeaderCellDef> Saldo</th>
-      <td mat-cell *matCellDef="let element"> <strong>{{element.Balance}}</strong> </td>
+      <td mat-cell *matCellDef="let element"> <strong>{{ element.Balance | currency: 'BRL' }}</strong> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr class="mat-row" *matNoDataRow><td class="mat-cell" colspan="4">Nenhum dado corresponde ao filtro "{{input.value}}"</td></tr>
 
   </table>
 </div>

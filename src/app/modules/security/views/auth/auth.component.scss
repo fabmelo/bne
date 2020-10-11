@@ -1,19 +1,25 @@
 :host {
   display: flex;
   justify-content: center;
-  margin: 100px 0px;
 }
 
-mat-card-title,
-mat-card-content {
+.container {
+  height: calc(100vh);
   display: flex;
   justify-content: center;
+  align-items: center;
 
-  h1 {
-    font-weight: bolder;
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+
+    h1 {
+      font-weight: bolder;
+    }
+
+    form {
+      margin: 20px;
+    }
   }
-}
-
-form {
-  margin: 20px;
 }
