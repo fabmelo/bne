@@ -1,6 +1,11 @@
 :host {
   display: flex;
   justify-content: center;
+
+  background-image: url(./../../../../../assets/background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .container {
