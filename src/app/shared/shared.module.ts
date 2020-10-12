@@ -12,26 +12,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // components
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ClipboardComponent } from './components/clipboard/clipboard.component';
 
+// others
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 @NgModule({
   declarations: [ToolbarComponent, ClipboardComponent],
   imports: [
-    // angular
     CommonModule,
     ClipboardModule,
-
-    // angular material
-    MatTableModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCardModule,
-    MatSortModule,
   ],
   exports: [
     // angular
@@ -40,6 +36,8 @@ import { ClipboardComponent } from './components/clipboard/clipboard.component';
     FormsModule,
     ClipboardModule,
 
+    ScrollingModule,
+
     // angular material
     MatTableModule,
     MatToolbarModule,
@@ -48,6 +46,7 @@ import { ClipboardComponent } from './components/clipboard/clipboard.component';
     MatInputModule,
     MatCardModule,
     MatSortModule,
+    MatSnackBarModule,
 
     // components
     ToolbarComponent,

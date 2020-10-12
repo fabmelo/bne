@@ -17,7 +17,7 @@ import { retry, catchError } from "rxjs/operators";
 })
 export class PeoplesService {
 
-  jsonUrl: string = "https://run.mocky.io/v3/44beff69-96d3-4e93-ac05-da966882b01d";
+  jsonUrl: string = "https://run.mocky.io/v3/d084bb3d-5fd3-4d42-a314-22f22094a73d";
 
   constructor(
     private httpClient: HttpClient,

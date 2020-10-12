@@ -21,6 +21,7 @@ export class AuthComponent implements OnInit {
   submitted = false;
   inputUserName: any;
   inputPassword: any;
+  message = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -73,15 +74,9 @@ export class AuthComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
         // para o loading
         this.loading = false;
-
       },
       (error) => {
-
-        // TODO:
-        // Mostra a mensagem no toast
-        //this.utilService.toastMessage(`ERRO NO LOGIN: ${error}`, 'ERRO', 'danger', 30000, false);
-        console.error(`ERRO NO LOGIN: ${error}`);
-
+        this.message = error;
         // para o loading
         this.loading = false;
       }

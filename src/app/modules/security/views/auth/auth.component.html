@@ -32,6 +32,14 @@
           <button [disabled]="!form.valid" type="submit" mat-raised-button color="primary">ENTRAR</button>
         </div>
 
+        <div class="loading" *ngIf="loading">
+          <span>Carregando...</span>
+        </div>
+
+        <div class="message" *ngIf="message">
+          <span>{{ message }}</span>
+        </div>
+
       </form>
     </mat-card-content>
   </mat-card>

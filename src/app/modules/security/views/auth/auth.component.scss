@@ -22,4 +22,30 @@
       margin: 20px;
     }
   }
+
+  .message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+      color: red;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 20px 0 0 0;
+    }
+  }
+
+  .loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+      color: #CCCCCC;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 20px 0 0 0;
+    }
+  }
 }

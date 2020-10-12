@@ -11,6 +11,13 @@ import { PeoplesService } from './../../services/peoples.service';
 // angular material
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+// Gerenciamento de estado
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/internal/Observable';
+import { AppState } from '../../../../app.state';
+import { PEOPLE_ACTION } from '../../../../reducers/peoples.reducer'
 
 @Component({
   selector: 'bne-peoples',
@@ -20,18 +27,30 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class PeoplesComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  dataSource: MatTableDataSource<People>;
+
+  peoples: Observable<People[]>;
+
+  dataSource = new MatTableDataSource<People>();
   isMobile: boolean;
   displayedColumns: Array<string>;
 
   constructor(
+    private snackBar: MatSnackBar,
     private peopleService: PeoplesService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private store: Store<AppState>
   ) {
-    this.getPeople();
+    this.peoples = store.select(state => state.peoples);
   }
 
   ngOnInit(){
+    this.peoples.subscribe( res  => {
+      this.dataSource.data = res;
+      this.dataSource.sort = this.sort;
+    });
+
+    this.getPeople();
+
     this.isMobile = this.utilService.detectMobile();
     // Define as colunas conforme dispositivo
     this.displayedColumns = (this.isMobile) ? ['Name','Copy'] : ['Id','Name','RegisterDate','City','State','IsActive','Balance','Copy'];
@@ -42,12 +61,14 @@ export class PeoplesComponent implements OnInit {
    */
   getPeople() {
     this.peopleService.getAll().subscribe(
-      (res: any) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.sort = this.sort;
+      (res: Array<People>) => {
+        this.store.dispatch({
+          type: PEOPLE_ACTION.ADD,
+          payload: res
+        });
       },
       (error: any) => {
-        console.error('ERRO: ', error);
+        this.openSnackBar(error, "Fechar");
       }
     );
   }
@@ -55,6 +76,12 @@ export class PeoplesComponent implements OnInit {
   onFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

@@ -2,6 +2,7 @@
   <mat-toolbar color="primary">
     <span>Teste BNE</span>
     <span class="spacer"></span>
+    <span class="user"><strong>Usuário: </strong>{{ user.UserName }}<span class="separator">|</span><strong>Nome: </strong> {{ user.FirstName }} {{ user.LastName }}</span>
     <button mat-icon-button (click)="logout()">
       <mat-icon>exit_to_app</mat-icon>
     </button>

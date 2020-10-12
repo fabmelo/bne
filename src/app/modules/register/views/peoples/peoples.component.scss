@@ -1,6 +1,10 @@
 .container{
   padding: 20px;
 
+  cdk-virtual-scroll-viewport{
+    height: calc(100vh - 165px);
+  }
+
   table {
     width: 100%;
 
