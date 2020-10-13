@@ -19,16 +19,11 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ClipboardComponent } from './components/clipboard/clipboard.component';
 
 // others
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [ToolbarComponent, ClipboardComponent],
-  imports: [
-    CommonModule,
-    ClipboardModule,
-    MatToolbarModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, ClipboardModule, MatToolbarModule, MatIconModule],
   exports: [
     // angular
     CommonModule,
@@ -36,6 +31,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     FormsModule,
     ClipboardModule,
 
+    // others
     ScrollingModule,
 
     // angular material

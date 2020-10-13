@@ -11,3 +11,12 @@
 .separator{
   padding: 0 20px;
 }
+
+button{
+  background: transparent;
+  border: 0;
+
+  mat-icon{
+    color: #ffffff;
+  }
+}
