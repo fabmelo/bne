@@ -25,7 +25,7 @@ Aplicação SPA desenvolvida com Angular em conjunto com o Angular Material como
 - Angular Material 10
 - JavaScript
 - TypeScript
-- CSS3 (Sass)
+- CSS3 (SCSS)
 - HTML5
 
 ## Instalação da Aplicação
