@@ -25,6 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    // se houver dados de usuário na sessionStorage
     if (JSON.parse(sessionStorage.getItem('currentUser')) !== undefined) {
       if (sessionStorage.getItem('currentUser') !== null) {
         let token = JSON.parse(sessionStorage.getItem('currentUser')).Token;

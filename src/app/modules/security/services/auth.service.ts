@@ -7,9 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// services
-import { UtilService } from './../../../core/services/util.service';
-
 // intefaces
 import { User } from './../models/user.interface';
 
@@ -26,7 +23,6 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private utilService: UtilService,
     private router: Router
   ) {
     // recupera dados do usuário/login que estão no sessionStorage

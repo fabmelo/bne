@@ -18,7 +18,10 @@ registerLocaleData(localePt);
 
 @NgModule({
   imports: [HttpClientModule],
-  exports: [BrowserModule, BrowserAnimationsModule],
+  exports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+  ],
   providers: [
     // locale
     { provide: LOCALE_ID, useValue: 'pt-BR' },

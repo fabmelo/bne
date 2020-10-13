@@ -1,10 +1,15 @@
 <div>
   <mat-toolbar color="primary">
-    <span>Teste BNE</span>
-    <span class="spacer"></span>
-    <span class="user"><strong>Usuário: </strong>{{ user.UserName }}<span class="separator">|</span><strong>Nome: </strong> {{ user.FirstName }} {{ user.LastName }}</span>
-    <button mat-icon-button (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
+    <mat-toolbar-row>
+      <span>Teste BNE</span>
+      <span class="spacer"></span>
+      <span *ngIf="!isMobile" class="user"><strong>Usuário:&nbsp;</strong>{{ user.UserName }}<span class="separator">|</span><strong>Nome:&nbsp;</strong> {{ user.FirstName }} {{ user.LastName }}</span>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="isMobile" class="user">
+      <span class="user"><strong>Usuário:&nbsp;</strong>{{ user.UserName }}<span class="separator">|</span><strong>Nome:&nbsp;</strong> {{ user.FirstName }} {{ user.LastName }}</span>
+    </mat-toolbar-row>
   </mat-toolbar>
 </div>

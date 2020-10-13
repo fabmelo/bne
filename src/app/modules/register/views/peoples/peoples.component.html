@@ -5,7 +5,7 @@
     <input matInput (keyup)="onFilter($event)" placeholder="Ex. Digite o que deseja filtrar" #input>
   </mat-form-field>
 
-  <cdk-virtual-scroll-viewport itemSize="48" class="mat-elevation-z8">
+  <cdk-virtual-scroll-viewport itemSize="48" class="mat-elevation-z8" style="height: 540px">
 
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="Id" *ngIf="!isMobile">

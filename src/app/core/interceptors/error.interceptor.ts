@@ -30,6 +30,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((err) => {
+        // se retorno for 401 desconecta e direciona para novo login
         if (err.status === 401) {
           this.authService.logout();
           window.location.reload.bind(window.location);
