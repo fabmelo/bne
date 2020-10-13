@@ -50,10 +50,8 @@ export class PeoplesComponent implements OnInit {
     });
 
     this.getPeople();
-
     this.isMobile = this.utilService.detectMobile();
-    // Define as colunas conforme dispositivo
-    this.displayedColumns = (this.isMobile) ? ['Name','Copy'] : ['Id','Name','RegisterDate','City','State','IsActive','Balance','Copy'];
+    this.displayedColumns = (this.isMobile) ? ['Name','Copy'] : ['Id','Name','RegisterDate','City','State','IsActive','Balance','Copy']; // Define as colunas conforme dispositivo
   }
 
   /**
