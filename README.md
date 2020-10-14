@@ -29,11 +29,14 @@ Aplicação SPA desenvolvida com Angular em conjunto com o Angular Material como
 - HTML5
 
 ## Instalação da Aplicação
-
 Faça o clone da aplicação e instale os pacotes através dos comandos abaixo
 
-## Servidor de Desenvolvimento
+## Login na Aplicação
+Para realizar o login na aplicação use um dos dois dados abaixo:
+- Usuário: admin Senha: 123456 
+- Usuário: bne Senha: 123456
 
+## Servidor de Desenvolvimento
 Execute `ng serve` e navegue para `http://localhost:4200/`. A aplicação será carregada automaticamente.
 ```
 git clone https://github.com/fabmelo/bne.git
