@@ -52,8 +52,8 @@ export class PeoplesComponent implements OnInit {
     this.isMobile = this.utilService.detectMobile();
     this.displayedColumns = this.isMobile ? ['Name', 'Copy'] : ['Id','Name','RegisterDate','City','State','IsActive','Balance','Copy']; // Define as colunas conforme dispositivo
 
-    this.loadFirstTwoPages(); // faz primeira carga com as 2 primeira páginas para dar rolagem
-    const wrapper: any = document.querySelector('cdk-virtual-scroll-viewport');
+    this.loadPeopleFromService(this.page);
+    const wrapper: HTMLElement = document.querySelector('cdk-virtual-scroll-viewport');
     wrapper.addEventListener('scroll', () => this.addANewPage(wrapper));
   }
 
@@ -61,29 +61,20 @@ export class PeoplesComponent implements OnInit {
    * Detecta se a rolagem chegou ao final e adiciona uma nova página
    * @param element
    */
-  async addANewPage(element) {
+  addANewPage(element: HTMLElement) {
     const { offsetHeight, scrollTop, scrollHeight } = element;
     if (offsetHeight + scrollTop >= scrollHeight) {
       this.page += 1;
-      await this.loadPeopleFromService(this.page);
+      this.loadPeopleFromService(this.page);
     }
-  }
-
-  /**
-   * Carrega as 2 primeiras paginas
-   */
-  async loadFirstTwoPages() {
-    await this.loadPeopleFromService(1);
-    await this.loadPeopleFromService(2);
-    this.page = 2;
   }
 
   /**
    * Informa a página e consome a api (JSON)
    * @param page
    */
-  async loadPeopleFromService(page: number) {
-    await this.peopleService.getPeople(page).subscribe(
+  loadPeopleFromService(page: number) {
+    this.peopleService.getPeople(page).subscribe(
       (res: Array<People>) => {
         this.store.dispatch({
           type: PEOPLE_ACTION.ADD,
